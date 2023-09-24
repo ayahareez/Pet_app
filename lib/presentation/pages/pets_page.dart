@@ -105,19 +105,19 @@ class _PetPageState extends State<PetPage> {
                             ),
                           )),
                           const SizedBox(height: 8,),
-                          TextFormTile(
-                              controller: imageUrlController,
-                              type: TextInputType.text,
-                              decoration:const InputDecoration(
-                                labelText: "enter the Image URL",
-                                border: OutlineInputBorder(),
-                                prefix: Icon(
-                                  Icons.watch_later,
-                                ),
-                              )),
-                         const SizedBox(
-                            height: 8,
-                          ),
+                          // TextFormTile(
+                          //     controller: imageUrlController,
+                          //     type: TextInputType.text,
+                          //     decoration:const InputDecoration(
+                          //       labelText: "enter the Image URL",
+                          //       border: OutlineInputBorder(),
+                          //       prefix: Icon(
+                          //         Icons.watch_later,
+                          //       ),
+                          //     )),
+                         // const SizedBox(
+                         //    height: 8,
+                         //  ),
                           TextFormTile(
                               controller: idController,
                               type: TextInputType.number,
