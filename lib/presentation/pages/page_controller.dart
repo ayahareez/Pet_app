@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:frist_project/data/data_source/app_bar_bottom_nav.dart';
+import 'package:frist_project/data/models/user_data.dart';
 import 'package:frist_project/presentation/pages/fav_page.dart';
 import 'package:frist_project/presentation/pages/pets_page.dart';
 
 class ControllerPage extends StatefulWidget {
   const ControllerPage({super.key});
 
-
   @override
   State<ControllerPage> createState() => _ControllerPageState();
 }
 
 class _ControllerPageState extends State<ControllerPage> {
-  int index=0;
-  PageController pageController =PageController();
+  int index = 0;
+  PageController pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar[index],
       body: PageView(
         controller: pageController,
-        children: const [
+        children: [
           PetPage(),
           FavPage(),
         ],
-        onPageChanged: (pageIndex){
+        onPageChanged: (pageIndex) {
           setState(() {
-            index=pageIndex;
+            index = pageIndex;
           });
         },
-
-
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,

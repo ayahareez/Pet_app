@@ -13,6 +13,9 @@ class PetProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+  static Set<Pet> getFavPets(){
+    return favoritePets;
+  }
 
   bool isPetFavorite(Pet pet) {
     return favoritePets.contains(pet);

@@ -7,8 +7,9 @@ import '../../data/data_source/data_source.dart';
 import '../pages/page_pet_info.dart';
 
 class PetItem extends StatefulWidget {
-  final int index;
-  const PetItem({super.key, required this.index});
+  //final int index;
+  final Pet pet;
+  const PetItem({super.key, required this.pet});
 
   @override
   State<PetItem> createState() => _PetItemState();
@@ -18,16 +19,23 @@ class _PetItemState extends State<PetItem> {
   bool isFav = false;
 
   @override
-  Widget build(BuildContext context) {
-    final petProvider = Provider.of<PetProvider>(context);
-    final isFavorite = petProvider.isPetFavorite(pets[widget.index]);
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isFav=widget.pet.isFav;
 
+  }
+  @override
+  Widget build(BuildContext context) {
+
+    //final  petProvider = Provider.of<PetProvider>(context);
+    //final  isFavorite = petProvider.isPetFavorite(widget.pet);
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: GestureDetector(
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => InfoPage(widget.index)));
+              MaterialPageRoute(builder: (context) => InfoPage(widget.pet.id)));
         },
         child: SizedBox(
           width: 120,
@@ -41,26 +49,26 @@ class _PetItemState extends State<PetItem> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    pets[widget.index].name,
+                    widget.pet.name,
                     style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   Consumer<PetProvider>(
                     builder: (BuildContext context, value, Widget? child) =>
                         Checkbox(
-                            value: isFavorite,
+                            value: isFav,
                             onChanged: (value) {
-                              petProvider.toggleFavorite(pets[widget.index]);
-                              // setState(() {
-                              //   isFav=value!;
-                              //
-                              // });
+                              //petProvider.toggleFavorite(widget.pet);
+                              setState(() {
+                                isFav=value!;
+                                widget.pet.isFav=value;
+                              });
                             }),
                   )
                 ],
               ),
             ),
             child: Image.asset(
-              pets[widget.index].imageUrl,
+              widget.pet.imageUrl,
               width: 120,
               height: 120,
               fit: BoxFit.cover,
